@@ -42,20 +42,20 @@ class ObservableMapAdapter<K extends Comparable<K>, V> extends BaseAdapter imple
     public V getItem(final int position) {
         if (map == null || position < 0 || position >= map.size())
             return null;
-        return map.get(getKeys().get(position));
+        return map.get(getKey(position));
     }
 
     @Override
     public long getItemId(final int position) {
         if (map == null || position < 0 || position >= map.size())
             return -1;
-        return map.get(getKeys().get(position)).hashCode();
+        return getItem(position).hashCode();
     }
 
-    private ArrayList<K> getKeys() {
+    private K getKey(final int position) {
         if (keys == null)
             keys = new ArrayList<>(map.keySet());
-        return keys;
+        return keys.get(position);
     }
 
     @Override
