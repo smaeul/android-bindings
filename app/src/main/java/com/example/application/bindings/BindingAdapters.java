@@ -28,6 +28,8 @@ public final class BindingAdapters {
         if (listener != null && oldList != null && oldLayoutId != newLayoutId) {
             listener.setList(null);
             listener = null;
+            // Stop tracking the old listener.
+            ListenerUtil.trackListener(view, null, R.id.item_change_listener);
         }
         // Avoid adding a listener when there is no new list or layout.
         if (newList == null || newLayoutId == 0)
