@@ -23,11 +23,12 @@ public class MainActivity extends Activity {
         model.addItem(new Item(3, "Whatchamacallit", true));
         model.addItem(new Item(2, "Frobnosticator", false));
 
-        model.getItems().get("Discombobulator").getAttributes().add("First");
         model.getItems().get("Discombobulator").getAttributes().add("Odd");
         model.getItems().get("Frobnosticator").getAttributes().add("Even");
         model.getItems().get("Whatchamacallit").getAttributes().add("Odd");
-        model.getItems().get("Whodad").getAttributes().add("Last");
         model.getItems().get("Whodad").getAttributes().add("Even");
+
+        model.getItems().get("Discombobulator").getAttributes().add("First");
+        model.getItems().get("Whodad").getAttributes().add("Last");
     }
 }
