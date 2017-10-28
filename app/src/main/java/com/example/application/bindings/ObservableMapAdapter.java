@@ -63,6 +63,7 @@ class ObservableMapAdapter<K extends Comparable<K>, V> extends BaseAdapter imple
         ViewDataBinding binding = DataBindingUtil.getBinding(convertView);
         if (binding == null)
             binding = DataBindingUtil.inflate(layoutInflater, layoutId, parent, false);
+        binding.setVariable(BR.key, getKey(position));
         binding.setVariable(BR.item, getItem(position));
         binding.executePendingBindings();
         return binding.getRoot();
