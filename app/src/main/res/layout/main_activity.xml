@@ -28,6 +28,6 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/title"
             app:items="@{model.items}"
-            app:layout="@{@layout/list_item}" />
+            app:layout="@{@layout/map_item}" />
     </RelativeLayout>
 </layout>

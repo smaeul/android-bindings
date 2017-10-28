@@ -18,9 +18,16 @@ public class MainActivity extends Activity {
                 DataBindingUtil.setContentView(this, R.layout.main_activity);
         binding.setModel(model);
 
-        model.getItems().add(new Item(1, "Discombobulator", true));
-        model.getItems().add(new Item(2, "Frobnosticator", false));
-        model.getItems().add(new Item(3, "Whatchamacallit", true));
-        model.getItems().add(new Item(4, "Whodad", false));
+        model.addItem(new Item(1, "Discombobulator", true));
+        model.addItem(new Item(4, "Whodad", false));
+        model.addItem(new Item(3, "Whatchamacallit", true));
+        model.addItem(new Item(2, "Frobnosticator", false));
+
+        model.getItems().get("Discombobulator").getAttributes().add("First");
+        model.getItems().get("Discombobulator").getAttributes().add("Odd");
+        model.getItems().get("Frobnosticator").getAttributes().add("Even");
+        model.getItems().get("Whatchamacallit").getAttributes().add("Odd");
+        model.getItems().get("Whodad").getAttributes().add("Last");
+        model.getItems().get("Whodad").getAttributes().add("Even");
     }
 }
