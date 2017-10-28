@@ -44,7 +44,9 @@ class ObservableListAdapter<T> extends BaseAdapter implements ListAdapter {
 
     @Override
     public long getItemId(final int position) {
-        return position;
+        if (list == null || position < 0 || position >= list.size())
+            return -1;
+        return list.get(position).hashCode();
     }
 
     @Override
@@ -59,7 +61,7 @@ class ObservableListAdapter<T> extends BaseAdapter implements ListAdapter {
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     void setList(final ObservableList<T> newList) {
