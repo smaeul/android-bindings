@@ -51,7 +51,8 @@ public class ObservableTreeMap<K, V> extends TreeMap<K, V> implements Observable
     @Override
     public V remove(final Object key) {
         final V oldValue = super.remove(key);
-        @SuppressWarnings("unchecked") final K k = (K) key;
+        @SuppressWarnings("unchecked")
+        final K k = (K) key;
         notifyChange(k);
         return oldValue;
     }
