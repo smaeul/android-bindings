@@ -37,7 +37,9 @@ class ObservableListAdapter<T> extends BaseAdapter implements ListAdapter {
 
     @Override
     public T getItem(final int position) {
-        return list != null ? list.get(position) : null;
+        if (list == null || position < 0 || position >= list.size())
+            return null;
+        return list.get(position);
     }
 
     @Override
@@ -53,6 +55,11 @@ class ObservableListAdapter<T> extends BaseAdapter implements ListAdapter {
         binding.setVariable(BR.item, getItem(position));
         binding.executePendingBindings();
         return binding.getRoot();
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
     }
 
     void setList(final ObservableList<T> newList) {
