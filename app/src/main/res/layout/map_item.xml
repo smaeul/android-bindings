@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="key"
+            type="String" />
+
+        <variable
             name="item"
             type="com.example.application.data.Item" />
     </data>
@@ -25,7 +29,7 @@
             android:layout_toStartOf="@+id/item_enabled"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{item.name}" />
+            android:text="@{key}" />
 
         <CheckBox
             android:id="@+id/item_enabled"
