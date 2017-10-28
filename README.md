@@ -1,11 +1,8 @@
-# Android Application Skeleton
+# Android Data Binding adapters
 
-This project provides an empty Android application structure. It's designed to
-be forked and then imported into Android Studio instead of using the "Create New
-Project" wizard. That way everything you need is already added to the git
-repository, and you can begin writing code immediately.
+This project provides reusable adapters and functions for linking `Observable`
+arrays and maps to UI elements, such as `ListView` and `LinearLayout`. Binding
+adapters for a few other useful properties are included as well.
 
-After forking and importing this repository, be sure to rename the application
-identifier to something other than `com.example.application`.
-
-The `gradle` configuration in this project requires Android Studio 3.0 or newer.
+An example use of these binding adapters is provided (partially because *using*
+the bound variables in at least one layout is required for the code to compile).
