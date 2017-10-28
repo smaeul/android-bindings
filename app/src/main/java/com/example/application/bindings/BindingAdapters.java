@@ -44,24 +44,25 @@ public final class BindingAdapters {
     public static <T> void setItems(final ListView view,
                                     final ObservableList<T> oldList, final int oldLayoutId,
                                     final ObservableList<T> newList, final int newLayoutId) {
-        // Remove any existing binding when there is no new list or layout.
-        if (newList == null || newLayoutId == 0) {
-            view.setAdapter(null);
+        if (oldList == newList && oldLayoutId == newLayoutId)
             return;
-        }
         // The ListAdapter interface is not generic, so this cannot be checked.
         @SuppressWarnings("unchecked")
         ObservableListAdapter<T> adapter = (ObservableListAdapter<T>) view.getAdapter();
         // If the layout changes, any existing adapter must be replaced.
-        if (newLayoutId != oldLayoutId)
+        if (adapter != null && oldList != null && oldLayoutId != newLayoutId) {
+            adapter.setList(null);
             adapter = null;
-        // Add a new binding if there was none, or if it must be replaced due to a layout change.
-        if (adapter == null) {
-            view.setAdapter(new ObservableListAdapter<>(view.getContext(), newLayoutId, newList));
-        } else if (newList != oldList) {
-            // Changing the list only requires modifying the existing adapter.
-            adapter.setList(newList);
         }
+        // Avoid setting an adapter when there is no new list or layout.
+        if (newList == null || newLayoutId == 0)
+            return;
+        if (adapter == null) {
+            adapter = new ObservableListAdapter<>(view.getContext(), newLayoutId, newList);
+            view.setAdapter(adapter);
+        }
+        // Either the list changed, or this is an entirely new listener because the layout changed.
+        adapter.setList(newList);
     }
 
     @BindingAdapter({"items", "layout"})
